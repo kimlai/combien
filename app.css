@@ -1,0 +1,62 @@
+:root {
+  --ratio: 1.4;
+  --measure: 55ch;
+  --s-4: calc(var(--s-3) / var(--ratio));
+  --s-3: calc(var(--s-2) / var(--ratio));
+  --s-2: calc(var(--s-1) / var(--ratio));
+  --s-1: calc(var(--s0) / var(--ratio));
+  --s0: 1rem;
+  --s1: calc(var(--s0) * var(--ratio));
+  --s2: calc(var(--s1) * var(--ratio));
+  --s3: calc(var(--s2) * var(--ratio));
+  --s4: calc(var(--s3) * var(--ratio));
+  --s5: calc(var(--s4) * var(--ratio));
+  --s6: calc(var(--s5) * var(--ratio));
+  --s7: calc(var(--s6) * var(--ratio));
+  --s8: calc(var(--s7) * var(--ratio));
+  font-size: calc(0.33vw + 1em);
+  --font-plain: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: var(--font-plain);
+}
+
+main > * + * {
+  margin-top: var(--s2);
+}
+
+main {
+  padding: var(--s4) var(--s1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  line-height: 1.2;
+}
+
+.counters > * + * {
+  margin-top: var(--s2);
+}
+
+.counter-name {
+  font-size: var(--s1);
+  text-transform: capitalize;
+  margin-bottom: var(--s-2);
+}
+
+.new-counter-link {
+  position: fixed;
+  bottom: var(--s0);
+  padding: var(--s0);
+  font-size: var(--s1);
+  font-weight: bold;
+  color: inherit;
+}
+
+form > * + * {
+  margin-top: var(--s-1);
+}
+
+label {
+  font-weight: bold;
+}
