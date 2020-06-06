@@ -46,10 +46,15 @@ h1 {
 
 .new-counter-link {
   position: fixed;
-  bottom: var(--s0);
+  display: block;
+  width: 100%;
+  text-align: center;
+  bottom: 0;
   padding: var(--s0);
+  padding-bottom: var(--s2);
   font-size: var(--s1);
   font-weight: bold;
+  background: white;
   color: inherit;
 }
 

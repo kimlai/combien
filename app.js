@@ -16,13 +16,14 @@ const vm = new Vue({
       this.counters[name] = newCounter;
       return set(name, newCounter);
     },
-    today: function(events) {
+    onDay: function(events, daysOffset) {
       return events.filter(event => {
-        const now = new Date();
+        const day = new Date();
+        day.setDate(day.getDate() + daysOffset);
         return (
-          now.getFullYear() === event.date.getFullYear() &&
-          now.getMonth() === event.date.getMonth() &&
-          now.getDate() === event.date.getDate()
+          day.getFullYear() === event.date.getFullYear() &&
+          day.getMonth() === event.date.getMonth() &&
+          day.getDate() === event.date.getDate()
         );
       }).length;
     }
