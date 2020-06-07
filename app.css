@@ -42,6 +42,7 @@ h1 {
 
 .counter-button {
   display: flex;
+  position: relative;
   width: 100%;
   padding: var(--s-3) var(--s-1);
   background: white;
@@ -82,4 +83,30 @@ label {
 
 input {
   width: 100%;
+}
+
+.incrementing {
+  display: none;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: var(--s-1);
+}
+
+.slideUp-enter-active {
+  display: block;
+  animation: slide-up 0.5s;
+}
+.incrementing span {
+  font-size: var(--s1);
+}
+
+@keyframes slide-up {
+  30% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(calc(-1 * var(--s3)));
+    opacity: 0;
+  }
 }

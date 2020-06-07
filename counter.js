@@ -1,32 +1,10 @@
-import Vue from "https://unpkg.com/vue@2.6.0/dist/vue.esm.browser.js";
-import {
-  get,
-  set
-} from "https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval.mjs";
-
-const vm = new Vue({
-  el: "#app",
-  data: { counters: [] }
-});
-
-get("counters").then(idbCounters => {
-  idbCounters.forEach(async counter => {
-    const events = (await get(counter)) || [];
-    vm.counters.push({ name: counter, events: events });
-  });
-});
-
-const counter = Vue.component("counter", {
-  props: ["counter"],
-  data: () => ({ incrementing: false }),
+export default Vue.component("counter", {
+  props: ["name", "events"],
   template: `
     <div class="counter">
       <button class="counter-button" v-on:click="increment">
         <div>➕</div>
-        <div class="counter-name">{{ counter.name }}</div>
-        <transition name="slideUp" v-on:after-enter="incrementing = false">
-          <div v-if="incrementing" class="incrementing">➕<span>1</span></div>
-        </transition>
+        <div class="counter-name">{{ name }}</div>
       </button>
       <div class="stats">
         <div>aujourd'hui: {{ onDay(0) }}</div>
@@ -36,14 +14,14 @@ const counter = Vue.component("counter", {
   `,
   methods: {
     increment: async function() {
-      const name = this.counter.name;
-      this.counter.events.push({ date: new Date() });
-      return set(name, this.counter.events).then(
-        () => (this.incrementing = true)
-      );
+      const name = this.props.name;
+      const events = (await get(name)) || [];
+      const newCounter = this.counters[name].concat({ date: new Date() });
+      this.counters[name] = newCounter;
+      return set(name, newCounter);
     },
     onDay: function(daysOffset) {
-      const events = this.counter.events;
+      const events = this.props.events;
       const day = new Date();
       day.setDate(day.getDate() + daysOffset);
       return events.filter(event => {
@@ -59,7 +37,7 @@ const counter = Vue.component("counter", {
       }).length;
     },
     thisWeek: function() {
-      const events = this.counter.events;
+      const events = this.props.events;
       const lastMonday = new Date();
       lastMonday.setDate(
         lastMonday.getDate() - ((lastMonday.getDay() + 6) % 7)
