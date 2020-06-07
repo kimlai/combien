@@ -17,13 +17,17 @@ const vm = new Vue({
       return set(name, newCounter);
     },
     onDay: function(events, daysOffset) {
+      const day = new Date();
+      day.setDate(day.getDate() + daysOffset);
       return events.filter(event => {
-        const day = new Date();
-        day.setDate(day.getDate() + daysOffset);
+        // remove 5h to the event date to consider all events happening
+        // between midnight and 5am as events of the previous day.
+        const eventDate = new Date(event.date); // do not mutate the original event
+        eventDate.setHours(eventDate.getHours() - 5);
         return (
-          day.getFullYear() === event.date.getFullYear() &&
-          day.getMonth() === event.date.getMonth() &&
-          day.getDate() === event.date.getDate()
+          day.getFullYear() === eventDate.getFullYear() &&
+          day.getMonth() === eventDate.getMonth() &&
+          day.getDate() === eventDate.getDate()
         );
       }).length;
     }
