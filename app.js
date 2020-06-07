@@ -25,7 +25,7 @@ const counter = Vue.component("counter", {
         <div>➕</div>
         <div class="counter-name">{{ counter.name }}</div>
         <transition name="slideUp" v-on:after-enter="incrementing = false">
-          <div v-if="incrementing" class="incrementing">➕<span>1</span></div>
+          <div v-if="incrementing" class="incrementing">+1</div>
         </transition>
       </button>
       <div class="stats">

@@ -97,9 +97,6 @@ input {
   display: block;
   animation: slide-up 0.5s;
 }
-.incrementing span {
-  font-size: var(--s1);
-}
 
 @keyframes slide-up {
   30% {
