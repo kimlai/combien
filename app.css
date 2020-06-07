@@ -41,14 +41,16 @@ h1 {
 }
 
 .counter {
-  font-size: var(--s1);
-  text-transform: capitalize;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin: calc(var(--s-2) * -1);
 }
 .counter > * {
   margin: var(--s-2);
+}
+.counter-name {
+  font-size: var(--s1);
+  text-transform: capitalize;
 }
 
 .new-counter-link {

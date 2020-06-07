@@ -18,11 +18,13 @@
           <li v-for="(events, counter) in counters">
             <div class="counter">
               <button v-on:click="increment(counter)">+</button>
-              <div>{{ counter }}</div>
+              <div>
+                <div class="counter-name">{{ counter }}</div>
+                <div>Aujourd'hui: {{ onDay(events, 0) }}</div>
+                <div>Hier: {{ onDay(events, -1) }}</div>
+                <div>Total : {{ events.length }}</div>
+              </div>
             </div>
-            <div>Aujourd'hui: {{ onDay(events, 0) }}</div>
-            <div>Hier: {{ onDay(events, -1) }}</div>
-            <div>Total : {{ events.length }}</div>
           </li>
         </ul>
         <a class="new-counter-link" alt="nouveau compteur" href="/new-counter"
