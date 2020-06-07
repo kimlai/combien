@@ -17,9 +17,11 @@
         <ul class="counters">
           <li v-for="(events, counter) in counters">
             <div class="counter">
-              <button v-on:click="increment(counter)">+</button>
-              <div>
+              <button class="counter-button" v-on:click="increment(counter)">
+                <div>➕</div>
                 <div class="counter-name">{{ counter }}</div>
+              </button>
+              <div class="stats">
                 <div>aujourd'hui: {{ onDay(events, 0) }}</div>
                 <div>cette semaine: {{ thisWeek(events) }}</div>
               </div>
