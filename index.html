@@ -13,21 +13,21 @@
   </head>
   <body>
     <main>
-      <a class="new-counter-link" alt="nouveau compteur" href="/new-counter"
-        >nouveau compteur</a
-      >
-      <div id="app">
+      <div id="app" class="home">
         <ul class="counters">
-          <li class="counter" v-for="(events, counter) in counters">
-            <div class="counter-name">
+          <li v-for="(events, counter) in counters">
+            <div class="counter">
               <button v-on:click="increment(counter)">+</button>
-              {{ counter }}
+              <div>{{ counter }}</div>
             </div>
             <div>Aujourd'hui: {{ onDay(events, 0) }}</div>
             <div>Hier: {{ onDay(events, -1) }}</div>
             <div>Total : {{ events.length }}</div>
           </li>
         </ul>
+        <a class="new-counter-link" alt="nouveau compteur" href="/new-counter"
+          >nouveau compteur</a
+        >
       </div>
     </main>
     <script type="module" src="app.js"></script>
