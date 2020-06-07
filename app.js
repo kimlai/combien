@@ -30,6 +30,19 @@ const vm = new Vue({
           day.getDate() === eventDate.getDate()
         );
       }).length;
+    },
+    thisWeek: function(events) {
+      const lastMonday = new Date();
+      lastMonday.setDate(
+        lastMonday.getDate() - ((lastMonday.getDay() + 6) % 7)
+      );
+      return events.filter(event => {
+        // remove 5h to the event date to consider all events happening
+        // between midnight and 5am as events of the previous day.
+        const eventDate = new Date(event.date); // do not mutate the original event
+        eventDate.setHours(eventDate.getHours() - 5);
+        return lastMonday <= eventDate;
+      }).length;
     }
   }
 });

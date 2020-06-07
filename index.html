@@ -20,9 +20,8 @@
               <button v-on:click="increment(counter)">+</button>
               <div>
                 <div class="counter-name">{{ counter }}</div>
-                <div>Aujourd'hui: {{ onDay(events, 0) }}</div>
-                <div>Hier: {{ onDay(events, -1) }}</div>
-                <div>Total : {{ events.length }}</div>
+                <div>aujourd'hui: {{ onDay(events, 0) }}</div>
+                <div>cette semaine: {{ thisWeek(events) }}</div>
               </div>
             </div>
           </li>
