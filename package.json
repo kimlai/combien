@@ -1,0 +1,29 @@
+{
+  "name": "combien",
+  "version": "1.0.0",
+  "description": "A simple counter app",
+  "scripts": {
+    "start": "parcel *.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimlai/combien.git"
+  },
+  "author": "Kim Laï Trinh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimlai/combien/issues"
+  },
+  "homepage": "https://github.com/kimlai/combien#readme",
+  "dependencies": {
+    "idb-keyval": "^3.2.0",
+    "vue": "^2.6.11",
+    "vue-hot-reload-api": "^2.3.4"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.2",
+    "parcel-bundler": "^1.12.4",
+    "vue-template-compiler": "^2.6.11"
+  }
+}

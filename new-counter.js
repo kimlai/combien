@@ -1,7 +1,5 @@
-import {
-  get,
-  set
-} from "https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval.mjs";
+import "regenerator-runtime/runtime"; // async/await support using babel
+import { get, set } from "idb-keyval";
 
 document.getElementById("form").addEventListener("submit", async event => {
   event.preventDefault();
