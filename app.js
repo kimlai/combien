@@ -4,11 +4,6 @@ import {
   set
 } from "https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval.mjs";
 
-const vm = new Vue({
-  el: "#app",
-  data: { counters: [] }
-});
-
 const getLast5am = () => {
   const date = new Date();
   if (date.getHours() < 5) {
@@ -25,13 +20,6 @@ const getLastMonday5am = () => {
   date.setMinutes(0);
   return date;
 };
-
-get("counters").then(idbCounters => {
-  idbCounters.forEach(async counter => {
-    const events = (await get(counter)) || [];
-    vm.counters.push({ name: counter, events: events });
-  });
-});
 
 const counter = Vue.component("counter", {
   props: ["counter"],
@@ -73,3 +61,18 @@ const counter = Vue.component("counter", {
     }
   }
 });
+
+const initialize = () => {
+  const vm = new Vue({
+    el: "#app",
+    data: { counters: [] }
+  });
+  get("counters").then(idbCounters => {
+    (idbCounters || []).forEach(async counter => {
+      const events = (await get(counter)) || [];
+      vm.counters.push({ name: counter, events: events });
+    });
+  });
+};
+
+initialize();
