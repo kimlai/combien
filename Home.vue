@@ -14,18 +14,11 @@
 </template>
 
 <script>
-import { get, set } from "idb-keyval";
+import store from "./store";
 import Counter from "./Counter.vue";
 
 export default {
-  data: () => ({ counters: [] }),
-  components: { Counter },
-  mounted: async function() {
-    const counters = (await get("counters")) || [];
-    counters.forEach(async counter => {
-      const events = (await get(counter)) || [];
-      this.counters.push({ name: counter, events: events });
-    });
-  }
+  data: () => ({ counters: store.counters }),
+  components: { Counter }
 };
 </script>

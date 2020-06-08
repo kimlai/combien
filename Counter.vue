@@ -15,8 +15,7 @@
 </template>
 
 <script>
-import { get, set } from "idb-keyval";
-import counter from "./Counter.vue";
+import store from "./store";
 
 const getLast5am = () => {
   const date = new Date();
@@ -39,12 +38,8 @@ export default {
   props: ["counter"],
   data: () => ({ incrementing: false }),
   methods: {
-    increment: async function() {
-      const name = this.counter.name;
-      this.counter.events.push({ date: new Date() });
-      return set(name, this.counter.events).then(
-        () => (this.incrementing = true)
-      );
+    increment: function() {
+      store.increment(this.counter.name).then(() => (this.incrementing = true));
     },
     today: function() {
       const events = this.counter.events;
