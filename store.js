@@ -4,10 +4,12 @@ const counters = [];
 
 const initialize = async () => {
   const storedCounters = (await get("counters")) || [];
-  storedCounters.forEach(async counter => {
-    const events = (await get(counter)) || [];
-    counters.push({ name: counter, events: events });
-  });
+  return Promise.all(
+    storedCounters.map(async counter => {
+      const events = (await get(counter)) || [];
+      counters.push({ name: counter, events: events });
+    })
+  );
 };
 
 const add = async name => {
@@ -18,8 +20,10 @@ const add = async name => {
   });
 };
 
+const getCounter = name => counters.filter(counter => counter.name === name)[0];
+
 const increment = name => {
-  const counter = counters.filter(counter => counter.name === name)[0];
+  const counter = getCounter(name);
   counter.events.push({ date: new Date() });
   return set(name, counter.events);
 };
@@ -28,5 +32,6 @@ export default {
   counters,
   initialize,
   add,
-  increment
+  increment,
+  getCounter
 };

@@ -10,6 +10,13 @@
     <div class="stats">
       <div>aujourd'hui: {{ today() }}</div>
       <div>cette semaine: {{ thisWeek() }}</div>
+      <div>
+        <router-link
+          :to="{ name: 'counterHistory', params: { name: counter.name } }"
+        >
+          historique
+        </router-link>
+      </div>
     </div>
   </div>
 </template>

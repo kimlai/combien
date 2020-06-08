@@ -4,8 +4,7 @@ import VueRouter from "vue-router";
 import store from "./store";
 import Home from "./Home.vue";
 import NewCounter from "./NewCounter.vue";
-
-store.initialize();
+import CounterHistory from "./CounterHistory.vue";
 
 Vue.use(VueRouter);
 
@@ -13,8 +12,15 @@ const router = new VueRouter({
   mode: "history",
   routes: [
     { path: "/", component: Home },
-    { path: "/new-counter", component: NewCounter }
+    { path: "/new-counter", component: NewCounter },
+    {
+      path: "/counter/:name",
+      component: CounterHistory,
+      name: "counterHistory"
+    }
   ]
 });
 
-new Vue({ router }).$mount("#app");
+store.initialize().then(() => {
+  new Vue({ router }).$mount("#app");
+});
