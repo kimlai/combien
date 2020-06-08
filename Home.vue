@@ -7,18 +7,17 @@
         v-bind:counter="counter"
       ></Counter>
     </ul>
-    <a class="new-counter-link" alt="nouveau compteur" href="/new-counter.html"
-      >nouveau compteur</a
-    >
+    <router-link to="/new-counter" class="new-counter-link">
+      nouveau compteur
+    </router-link>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
 import { get, set } from "idb-keyval";
 import Counter from "./Counter.vue";
 
-export default Vue.extend({
+export default {
   data: () => ({ counters: [] }),
   components: { Counter },
   mounted: async function() {
@@ -28,5 +27,5 @@ export default Vue.extend({
       this.counters.push({ name: counter, events: events });
     });
   }
-});
+};
 </script>

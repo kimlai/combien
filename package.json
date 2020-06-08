@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A simple counter app",
   "scripts": {
-    "start": "parcel *.html",
+    "start": "parcel index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,11 +19,15 @@
   "dependencies": {
     "idb-keyval": "^3.2.0",
     "vue": "^2.6.11",
-    "vue-hot-reload-api": "^2.3.4"
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-router": "^3.3.2"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^3.1.2",
     "parcel-bundler": "^1.12.4",
     "vue-template-compiler": "^2.6.11"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.esm.js"
   }
 }

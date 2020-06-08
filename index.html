@@ -13,17 +13,8 @@
   </head>
   <body>
     <main>
-      <div id="app" class="home">
-        <ul class="counters">
-          <counter
-            v-for="counter in counters"
-            v-bind:key="counter.name"
-            v-bind:counter="counter"
-          ></counter>
-        </ul>
-        <a class="new-counter-link" alt="nouveau compteur" href="/new-counter"
-          >nouveau compteur</a
-        >
+      <div id="app">
+        <router-view></router-view>
       </div>
     </main>
     <script src="app.js"></script>
