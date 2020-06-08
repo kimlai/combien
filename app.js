@@ -9,6 +9,23 @@ const vm = new Vue({
   data: { counters: [] }
 });
 
+const getLast5am = () => {
+  const date = new Date();
+  if (date.getHours() < 5) {
+    date.setDate(date.getDate() - 1);
+  }
+  date.setHours(5);
+  return date;
+};
+
+const getLastMonday5am = () => {
+  const date = new Date();
+  date.setDate(date.getDate() - ((date.getDay() + 6) % 7));
+  date.setHours(5);
+  date.setMinutes(0);
+  return date;
+};
+
 get("counters").then(idbCounters => {
   idbCounters.forEach(async counter => {
     const events = (await get(counter)) || [];
@@ -29,7 +46,7 @@ const counter = Vue.component("counter", {
         </transition>
       </button>
       <div class="stats">
-        <div>aujourd'hui: {{ onDay(0) }}</div>
+        <div>aujourd'hui: {{ today() }}</div>
         <div>cette semaine: {{ thisWeek() }}</div>
       </div>
     </div>
@@ -42,35 +59,17 @@ const counter = Vue.component("counter", {
         () => (this.incrementing = true)
       );
     },
-    onDay: function(daysOffset) {
+    today: function() {
       const events = this.counter.events;
-      const day = new Date();
-      day.setDate(day.getDate() + daysOffset);
-      return events.filter(event => {
-        // remove 5h to the event date to consider all events happening
-        // between midnight and 5am as events of the previous day.
-        const eventDate = new Date(event.date); // do not mutate the original event
-        eventDate.setHours(eventDate.getHours() - 5);
-        return (
-          day.getFullYear() === eventDate.getFullYear() &&
-          day.getMonth() === eventDate.getMonth() &&
-          day.getDate() === eventDate.getDate()
-        );
-      }).length;
+      // we count events happening between 00:00 and 5am as yesterday events.
+      const last5am = getLast5am();
+      return events.filter(event => last5am <= event.date).length;
     },
     thisWeek: function() {
       const events = this.counter.events;
-      const lastMonday = new Date();
-      lastMonday.setDate(
-        lastMonday.getDate() - ((lastMonday.getDay() + 6) % 7)
-      );
-      return events.filter(event => {
-        // remove 5h to the event date to consider all events happening
-        // between midnight and 5am as events of the previous day.
-        const eventDate = new Date(event.date); // do not mutate the original event
-        eventDate.setHours(eventDate.getHours() - 5);
-        return lastMonday <= eventDate;
-      }).length;
+      // we count events happening Monday between 00:00 and 5am as Sunday events.
+      const lastMonday5am = getLastMonday5am();
+      return events.filter(event => lastMonday5am <= event.date).length;
     }
   }
 });
