@@ -2,6 +2,14 @@
   <section class="counter-history">
     <h1>{{ counter.name }}</h1>
     <div>
+      <div class="month">
+        <button v-on:click="backward">◀️</button>
+        <div class="month-name">
+          {{ monthName(month) }}
+          {{ year }}
+        </div>
+        <button v-on:click="forward">▶️</button>
+      </div>
       <ul class="daily-stats">
         <li
           class="day-header"
@@ -43,26 +51,62 @@ export default {
     counter: {
       name: "",
       events: []
-    }
+    },
+    month: getLast5am(new Date()).getMonth(),
+    year: getLast5am(new Date()).getFullYear()
   }),
   mounted: function() {
     this.counter = store.getCounter(this.$route.params.name);
   },
   methods: {
+    backward() {
+      if (this.month === 0) {
+        this.year = this.year - 1;
+      }
+      this.month = (12 + this.month - 1) % 12;
+    },
+    forward() {
+      if (this.month === 11) {
+        this.year = this.year + 1;
+      }
+      this.month = (this.month + 1) % 12;
+    },
     dailyStats() {
       const events = this.counter.events;
+      const firstDayOfMonth = new Date(this.year, this.month, 1);
+      const lastDayOfMonth = new Date(this.year, this.month + 1, 0);
       const now = new Date();
-      const padding = new Array(7 - getLast5am(now).getDay());
-      const res = range(0, 28 - (padding.length + 1)).map(offset => {
-        const day = new Date(now);
-        day.setDate(day.getDate() - offset);
-        const start = getLast5am(day);
+      const res = range(1, lastDayOfMonth.getDate()).map(dayOfMonth => {
+        const day = new Date(this.year, this.month, dayOfMonth);
+        const start = new Date(day);
+        start.setHours(5);
+        start.setMinutes(0);
         const end = new Date(start);
         end.setDate(end.getDate() + 1);
+        if (start >= now) {
+          return null;
+        }
         return events.filter(event => start < event.date && event.date <= end)
           .length;
       });
-      return res.reverse().concat(padding);
+      const padding = new Array((firstDayOfMonth.getDay() + 6) % 7);
+      return padding.concat(res);
+    },
+    monthName(month) {
+      return [
+        "Janvier",
+        "Février",
+        "Mars",
+        "Avril",
+        "Mai",
+        "Juin",
+        "Juillet",
+        "Août",
+        "Septembre",
+        "Octobre",
+        "Novembre",
+        "Décembre"
+      ][month];
     }
   }
 };

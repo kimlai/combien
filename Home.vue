@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home center">
     <ul class="counters">
       <Counter
         v-for="counter in counters"

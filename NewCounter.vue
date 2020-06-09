@@ -1,9 +1,11 @@
 <template>
-  <form v-on:submit.prevent="submitForm">
-    <label for="name">Nom du compteur</label>
-    <input v-model="name" id="name" type="text" />
-    <button type="submit">Valider</button>
-  </form>
+  <div class="new-counter center">
+    <form v-on:submit.prevent="submitForm">
+      <label for="name">Nom du compteur</label>
+      <input v-model="name" id="name" type="text" />
+      <button type="submit">Valider</button>
+    </form>
+  </div>
 </template>
 
 <script>
