@@ -1,9 +1,22 @@
 <template>
   <section class="counter-history">
     <h1>{{ counter.name }}</h1>
-    <h2>7 derniers jours</h2>
     <div>
       <ul class="daily-stats">
+        <li
+          class="day-header"
+          v-for="day in [
+            'Lun',
+            'Mar',
+            'Mer',
+            'Jeu',
+            'Ven',
+            'Sam',
+            'Dim'
+          ].reverse()"
+        >
+          {{ day }}
+        </li>
         <li v-for="(stat, index) in dailyStats()" :key="index">
           {{ stat }}
         </li>
@@ -14,6 +27,14 @@
 
 <script>
 import store from "./store";
+
+const range = (a, b) => {
+  const res = [];
+  for (let i = a; i <= b; i++) {
+    res.push(i);
+  }
+  return res;
+};
 
 const getLast5am = now => {
   const date = new Date(now);
@@ -39,7 +60,8 @@ export default {
     dailyStats() {
       const events = this.counter.events;
       const now = new Date();
-      const res = [6, 5, 4, 3, 2, 1, 0].map(offset => {
+      const padding = new Array(7 - getLast5am(now).getDay());
+      const res = range(0, 28 - (padding.length + 1)).map(offset => {
         const day = new Date(now);
         day.setDate(day.getDate() - offset);
         const start = getLast5am(day);
@@ -48,7 +70,7 @@ export default {
         return events.filter(event => start < event.date && event.date <= end)
           .length;
       });
-      return res;
+      return padding.concat(res);
     }
   }
 };

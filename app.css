@@ -115,15 +115,22 @@ input {
 }
 
 .counter-history > * + * {
-  margin-top: var(--s0);
+  margin-top: var(--s1);
 }
 
 .daily-stats {
-  display: flex;
-  flex-wrap: wrap;
-  margin: calc(var(--s-1) / 2 * -1);
+  display: grid;
+  direction: rtl;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: var(--s-2);
 }
 
 .daily-stats > * {
-  margin: calc(var(--s-1) / 2);
+  text-align: center;
+}
+
+.daily-stats .day-header {
+  font-size: var(--s-1);
+  font-weight: bold;
+  padding-bottom: var(--s-2);
 }
