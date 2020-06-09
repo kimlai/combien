@@ -14,7 +14,7 @@
         <router-link
           :to="{ name: 'counterHistory', params: { name: counter.name } }"
         >
-          historique
+          voir l'historique
         </router-link>
       </div>
     </div>

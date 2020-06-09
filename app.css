@@ -19,6 +19,10 @@
   font-family: var(--font-plain);
 }
 
+a {
+  color: inherit;
+}
+
 .home > * + * {
   margin-top: var(--s3);
 }
@@ -71,7 +75,6 @@ h2 {
   width: 100%;
   text-align: center;
   font-weight: bold;
-  color: inherit;
 }
 
 form > * + * {
