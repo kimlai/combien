@@ -120,7 +120,6 @@ input {
 
 .daily-stats {
   display: grid;
-  direction: rtl;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: var(--s-2);
 }

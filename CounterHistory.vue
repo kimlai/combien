@@ -5,15 +5,7 @@
       <ul class="daily-stats">
         <li
           class="day-header"
-          v-for="day in [
-            'Lun',
-            'Mar',
-            'Mer',
-            'Jeu',
-            'Ven',
-            'Sam',
-            'Dim'
-          ].reverse()"
+          v-for="day in ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']"
         >
           {{ day }}
         </li>
@@ -70,7 +62,7 @@ export default {
         return events.filter(event => start < event.date && event.date <= end)
           .length;
       });
-      return padding.concat(res);
+      return res.reverse().concat(padding);
     }
   }
 };
