@@ -34,6 +34,12 @@ main {
 
 h1 {
   line-height: 1.2;
+  font-size: var(--s2);
+}
+
+h2 {
+  line-height: 1.2;
+  font-size: var(--s1);
 }
 
 .counters > * + * {
@@ -106,4 +112,18 @@ input {
     transform: translateY(calc(-1 * var(--s3)));
     opacity: 0;
   }
+}
+
+.counter-history > * + * {
+  margin-top: var(--s0);
+}
+
+.daily-stats {
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(var(--s-1) / 2 * -1);
+}
+
+.daily-stats > * {
+  margin: calc(var(--s-1) / 2);
 }
