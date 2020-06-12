@@ -1,7 +1,7 @@
 // mostly stolen from
 // https://github.com/hankchizljaw/hylia/blob/master/src/_includes/partials/global/service-worker.js
 const CACHE = "precache:v0";
-const PRE_CACHE_URLS = ["/", "app.js", "app.css"];
+const PRE_CACHE_URLS = ["/", "app.js", "app.css", "favicon.ico"];
 
 const addItemsToCache = function(cacheName, items = []) {
   caches.open(cacheName).then(cache => cache.addAll(items));
