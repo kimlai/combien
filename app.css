@@ -27,7 +27,7 @@ a {
   margin-top: var(--s3);
 }
 
-main #app > * {
+main > * {
   padding: var(--s4) var(--s1);
   display: flex;
   flex-direction: column;
@@ -121,7 +121,7 @@ input {
   margin-top: var(--s1);
 }
 
-main #app > .counter-history {
+main > .counter-history {
   justify-content: flex-start;
 }
 

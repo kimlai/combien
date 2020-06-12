@@ -47,14 +47,17 @@ const getLast5am = now => {
 };
 
 export default {
-  data: () => ({
-    counter: {
-      name: "",
-      events: []
-    },
-    month: getLast5am(new Date()).getMonth(),
-    year: getLast5am(new Date()).getFullYear()
-  }),
+  props: ["now"],
+  data() {
+    return {
+      counter: {
+        name: "",
+        events: []
+      },
+      month: getLast5am(this.now).getMonth(),
+      year: getLast5am(this.now).getFullYear()
+    };
+  },
   mounted: function() {
     this.counter = store.getCounter(this.$route.params.name);
   },
