@@ -1,3 +1,5 @@
+@import "./node_modules/modern-css-reset/dist/reset.css";
+
 :root {
   --ratio: 1.4;
   --measure: 55ch;
