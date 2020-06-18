@@ -29,10 +29,35 @@
     "@vue/component-compiler-utils": "^3.1.2",
     "modern-css-reset": "^1.1.0",
     "parcel-bundler": "^1.12.4",
+    "parcel-plugin-pwa-manifest": "^3.0.7",
     "parcel-plugin-sw-asset-urls": "^0.1.2",
     "vue-template-compiler": "^2.6.11"
   },
   "alias": {
     "vue": "./node_modules/vue/dist/vue.esm.js"
+  },
+  "pwaManifest": {
+    "name": "Combien ?",
+    "shortName": "Combien ?",
+    "description": "Une application pour compter des choses. Par exemple des sessions de jogging, ou pour suivre sa consommation de cigarettes.",
+    "lang": "fr",
+    "scope": "/",
+    "display": "standalone",
+    "start_url": "https://priceless-elion-7eb2ab.netlify.app/",
+    "theme_color": "transparent",
+    "background_color": "transparent",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "url": "https://priceless-elion-7eb2ab.netlify.app/",
+    "screenshots": [],
+    "generateIconOptions": {
+      "baseIcon": "./logo.png",
+      "sizes": [
+        192,
+        384,
+        512
+      ],
+      "genFavicons": true
+    }
   }
 }
