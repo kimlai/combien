@@ -10,17 +10,25 @@
         </div>
         <button v-on:click="forward">▶️</button>
       </div>
-      <ul class="daily-stats">
-        <li
-          class="day-header"
-          v-for="day in ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']"
-        >
-          {{ day }}
-        </li>
-        <li v-for="(stat, index) in dailyStats()" :key="index">
-          {{ stat }}
-        </li>
-      </ul>
+      <table class="daily-stats">
+        <thead>
+          <tr>
+            <th
+              class="day-header"
+              v-for="day in ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']"
+            >
+              {{ day }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="week in groupByWeeks(dailyStats())">
+            <td v-for="count in week">
+              {{ count }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 </template>
@@ -110,6 +118,12 @@ export default {
         "Novembre",
         "Décembre"
       ][month];
+    },
+    groupByWeeks(stats) {
+      if (stats.length <= 7) {
+        return [stats];
+      }
+      return [stats.slice(0, 7)].concat(this.groupByWeeks(stats.slice(7)));
     }
   }
 };

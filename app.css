@@ -127,28 +127,11 @@ main > .counter-history {
   justify-content: flex-start;
 }
 
-.daily-stats {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 6;
-  grid-gap: var(--s-2);
-}
-
-.daily-stats > * {
-  text-align: center;
-}
-
-.daily-stats .day-header {
-  font-size: var(--s-1);
-  font-weight: bold;
-  padding-bottom: var(--s-2);
-}
-
 .counter-history .month {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--s-1);
+  padding: var(--s-2) var(--s0);
 }
 
 .counter-history button {
@@ -159,4 +142,19 @@ main > .counter-history {
 .counter-history .month-name {
   text-align: center;
   font-weight: bold;
+}
+
+.daily-stats {
+  text-align: center;
+}
+
+.daily-stats .day-header {
+  font-size: var(--s-1);
+  font-weight: bold;
+  padding-bottom: var(--s-2);
+}
+
+.daily-stats {
+  border-collapse: separate;
+  border-spacing: var(--s-2);
 }
