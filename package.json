@@ -57,6 +57,9 @@
         384,
         512
       ],
+      "purpose": [
+        "any"
+      ],
       "genFavicons": true
     }
   }
