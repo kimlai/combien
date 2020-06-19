@@ -1,6 +1,6 @@
 // mostly stolen from
 // https://github.com/hankchizljaw/hylia/blob/master/src/_includes/partials/global/service-worker.js
-const CACHE = "precache:v1";
+const CACHE = "precache:v2";
 const PRE_CACHE_URLS = [
   "/",
   "app.js",
