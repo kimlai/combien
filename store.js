@@ -1,6 +1,6 @@
 import { get, set } from "idb-keyval";
 
-const counters = [];
+let counters = [];
 
 const initialize = async () => {
   const storedCounters = (await get("counters")) || [];
@@ -28,10 +28,22 @@ const increment = name => {
   return set(name, counter.events);
 };
 
+const setCounters = newCounters => {
+  counters = newCounters;
+  set(
+    "counters",
+    counters.map(counter => counter.name)
+  );
+  counters.forEach(counter => {
+    set(counter.name, counter.events);
+  });
+};
+
 export default {
   counters,
   initialize,
   add,
   increment,
-  getCounter
+  getCounter,
+  setCounters
 };

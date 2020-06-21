@@ -8,6 +8,7 @@ import store from "./store";
 import Home from "./Home.vue";
 import NewCounter from "./NewCounter.vue";
 import CounterHistory from "./CounterHistory.vue";
+import ImportExport from "./ImportExport.vue";
 
 Vue.use(VueRouter);
 
@@ -20,7 +21,8 @@ const router = new VueRouter({
       path: "/counter/:name",
       component: CounterHistory,
       name: "counterHistory"
-    }
+    },
+    { path: "/import-export", component: ImportExport }
   ]
 });
 
