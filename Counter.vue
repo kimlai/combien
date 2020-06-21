@@ -1,12 +1,14 @@
 <template>
   <div class="counter">
-    <button class="counter-button" v-on:click="increment">
-      <div>➕</div>
-      <div class="counter-name">{{ counter.name }}</div>
+    <div class="counter-button">
+      <button v-on:click="increment">
+        <div>➕</div>
+        <div class="counter-name">{{ counter.name }}</div>
+      </button>
       <transition name="slideUp" v-on:after-enter="incrementing = false">
         <div v-if="incrementing" class="incrementing">+1</div>
       </transition>
-    </button>
+    </div>
     <div class="stats">
       <div>aujourd'hui: {{ today() }}</div>
       <div>cette semaine: {{ thisWeek() }}</div>

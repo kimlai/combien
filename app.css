@@ -53,8 +53,10 @@ h2 {
 }
 
 .counter-button {
-  display: flex;
   position: relative;
+}
+.counter-button button {
+  display: flex;
   width: 100%;
   padding: var(--s-3) var(--s-1);
   background: white;
